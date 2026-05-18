@@ -9,7 +9,7 @@ body.addEventListener("click", () => {
   counter.textContent = ++counter.textContent;
 
   while (i < prayers.length) {
-    if (+counter.textContent > +prayers[i].firstElementChild.textContent) {
+    if (+counter.textContent === +prayers[i].firstElementChild.textContent) {
       prayers[i].remove();
       counter.textContent = 0;
       i++;

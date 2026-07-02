@@ -1,4 +1,5 @@
 async function getFivePrayers(date) {
+  localStorage.clear();
   if (localStorage.getItem(date)) {
     return JSON.parse(localStorage.getItem(date));
   }

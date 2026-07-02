@@ -88,7 +88,6 @@ async function subtractTime(timeA, timeB, prayer) {
   }
 
   while (hours !== 0 || minutes !== 0 || seconds !== 0) {
-    await delay();
     seconds--;
     if (seconds === 0) {
       minutes--;
@@ -105,6 +104,7 @@ async function subtractTime(timeA, timeB, prayer) {
 
     const prayerNameDiv = document.querySelector(".prayer-name");
     prayerNameDiv.textContent = `Remains until ${prayer} azan`;
+    await delay();
   }
 }
 

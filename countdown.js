@@ -1,4 +1,8 @@
 async function getFivePrayers(date) {
+  if (localStorage.getItem(date)) {
+    return JSON.parse(localStorage.getItem(date));
+  }
+
   let result;
   await fetch(
     `https://api.aladhan.com/v1/timingsByCity/${date}?country=jordan&city=amman`,
@@ -6,6 +10,16 @@ async function getFivePrayers(date) {
     .then((response) => response.json())
     .then((data) => (result = data.data.timings));
   const { Fajr, Dhuhr, Asr, Maghrib, Isha } = result;
+  localStorage.setItem(
+    date,
+    JSON.stringify({
+      Fajr,
+      Dhuhr,
+      Asr,
+      Maghrib,
+      Isha,
+    }),
+  );
   return { Fajr, Dhuhr, Asr, Maghrib, Isha };
 }
 

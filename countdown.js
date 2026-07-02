@@ -27,18 +27,18 @@ async function getFivePrayers(date) {
 async function timeRemaining() {
   const currentTime = `${new Date().getHours().toString().padStart(2, "0")}:${new Date().getMinutes().toString().padStart(2, "0")}`;
 
-  let string = new Date()
+  let currentDate = new Date()
     .toLocaleString()
     .replaceAll("/", "-")
     .split(",")[0]
     .split("-");
-  let temp = string[0];
-  string[0] = string[1];
-  string[1] = temp;
+  let temp = currentDate[0];
+  currentDate[0] = currentDate[1];
+  currentDate[1] = temp;
 
   let upcomingPrayer;
 
-  let fivePrayers = Object.entries(await getFivePrayers(string.join("-")));
+  let fivePrayers = Object.entries(await getFivePrayers(currentDate.join("-")));
 
   for (const prayer of fivePrayers) {
     if (prayer[1] > currentTime) {
@@ -53,7 +53,7 @@ async function timeRemaining() {
   if (fivePrayers.length === 0) {
     fivePrayers = {
       prayer: "Fajr",
-      time: Object.values(await getFivePrayers(string.join("-")))[0],
+      time: Object.values(await getFivePrayers(currentDate.join("-")))[0],
     };
 
     subtractTime(

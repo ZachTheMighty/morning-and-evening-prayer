@@ -25,7 +25,6 @@ async function getFivePrayers(date) {
 
 async function timeRemaining() {
   const currentTime = `${new Date().getHours().toString().padStart(2, "0")}:${new Date().getMinutes().toString().padStart(2, "0")}`;
-  console.log(currentTime);
 
   let string = new Date()
     .toLocaleString()

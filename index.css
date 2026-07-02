@@ -43,11 +43,11 @@ a:hover {
 }
 
 .time-remaining {
-  font-size: 3rem;
+  font-size: 5vw;
 }
 
 .prayer-name {
-  font-size: 1.8rem;
+  font-size: 4vw;
   color: #f5deb3;
   font-weight: 400;
 }

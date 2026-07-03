@@ -7,7 +7,7 @@ async function getFivePrayers(date) {
   )
     .then((response) => response.json())
     .then((data) => (result = data.data.timings));
-  const { Fajr, Dhuhr, Asr, Maghrib, Isha } = result;
+  const { Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha } = result;
   localStorage.setItem(
     date,
     JSON.stringify({
@@ -18,7 +18,7 @@ async function getFivePrayers(date) {
       Isha,
     }),
   );
-  return { Fajr, Dhuhr, Asr, Maghrib, Isha };
+  return { Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha };
 }
 
 async function timeRemaining() {

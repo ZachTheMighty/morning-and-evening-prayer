@@ -1,8 +1,5 @@
 async function getFivePrayers(date) {
-  localStorage.clear();
-  if (localStorage.getItem(date)) {
-    return JSON.parse(localStorage.getItem(date));
-  }
+  if (localStorage.getItem(date)) return JSON.parse(localStorage.getItem(date));
 
   let result;
   await fetch(
@@ -88,14 +85,15 @@ async function subtractTime(timeA, timeB, prayer) {
     hours = 24 - Math.abs(hours);
   }
 
-  while (hours !== 0 || minutes !== 0 || seconds !== 0) {
+  while (true) {
+    if (hours === 0 && minutes === 0 && seconds === 0) timeRemaining();
     seconds--;
-    if (seconds === 0) {
+    if (seconds === 0 && minutes > 0) {
       minutes--;
       seconds = 59;
     }
 
-    if (minutes === 0) {
+    if (minutes === 0 && hours > 0) {
       hours--;
       minutes = 59;
     }

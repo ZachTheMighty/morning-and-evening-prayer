@@ -36,7 +36,6 @@ async function timeRemaining() {
   let upcomingPrayer;
 
   let fivePrayers = Object.entries(await getFivePrayers(currentDate.join("-")));
-  displayPrayers(fivePrayers);
 
   for (const prayer of fivePrayers) {
     if (prayer[1] > currentTime) {
@@ -47,6 +46,7 @@ async function timeRemaining() {
       break;
     }
   }
+  displayPrayers(fivePrayers, upcomingPrayer);
 
   if (fivePrayers.length === 0) {
     fivePrayers = {
@@ -111,7 +111,7 @@ async function subtractTime(timeA, timeB, prayer) {
 function delay() {
   return new Promise((resolve) => setTimeout(resolve, 1000));
 }
-function displayPrayers(prayers) {
+function displayPrayers(prayers, upcomingPrayer) {
   const prayersDiv = document.createElement("div");
   prayersDiv.classList.add("prayers");
 
@@ -126,6 +126,14 @@ function displayPrayers(prayers) {
     const prayerTime = document.createElement("div");
     prayerTime.classList.add("time");
     prayerTime.textContent = prayer[1];
+
+    if (prayer[0] === upcomingPrayer.prayer) {
+      prayerName.classList.add("upcoming-prayer");
+      prayerTime.classList.add("upcoming-prayer");
+    } else {
+      prayerName.classList.remove("upcoming-prayer");
+      prayerTime.classList.remove("upcoming-prayer");
+    }
 
     prayerDiv.append(prayerName, prayerTime);
 

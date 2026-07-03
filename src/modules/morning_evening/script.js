@@ -1,3 +1,5 @@
+import "./morning_evening.css";
+
 let counter = document.querySelector(".counter");
 let body = document.querySelector("body");
 let prayers = document.querySelectorAll(".prayer");

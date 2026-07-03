@@ -21,7 +21,7 @@ async function getFivePrayers(date) {
   return { Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha };
 }
 
-async function timeRemaining() {
+export default async function timeRemaining() {
   const currentTime = `${new Date().getHours().toString().padStart(2, "0")}:${new Date().getMinutes().toString().padStart(2, "0")}`;
 
   let currentDate = new Date()
@@ -142,5 +142,3 @@ function displayPrayers(prayers, upcomingPrayer) {
 
   document.body.append(prayersDiv);
 }
-
-timeRemaining();

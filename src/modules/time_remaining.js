@@ -43,7 +43,7 @@ export default async function timeRemaining() {
       `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
       fivePrayers.prayer,
     );
-    timeRemaining.prayer = fivePrayers.prayer;
+    timeRemaining.prayer = upcomingPrayer.prayer;
   } else {
     if (upcomingPrayer.time > currentTime)
       timeRemaining = subtractTime(
@@ -51,7 +51,7 @@ export default async function timeRemaining() {
         `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
         upcomingPrayer.prayer,
       );
-    timeRemaining.prayer = fivePrayers.prayer;
+    timeRemaining.prayer = upcomingPrayer.prayer;
   }
 
   countdown(

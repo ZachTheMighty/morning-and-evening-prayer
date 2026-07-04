@@ -35,24 +35,19 @@ export default async function timeRemaining() {
 
   let timeRemaining;
 
+  const fullCurrentTime = `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`;
   if (nextDay) {
     fivePrayers = {
       prayer: "Fajr",
-      time: Object.values(await getFivePrayers(currentDate.join("-")))[0],
+      time: Object.values(
+        await getFivePrayers(currentDate.join("-")),
+      )[0].toString(),
     };
 
-    timeRemaining = subtractTime(
-      fivePrayers.time.toString(),
-      `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
-      nextDay,
-    );
+    timeRemaining = subtractTime(fivePrayers.time, fullCurrentTime, nextDay);
     timeRemaining.prayer = fivePrayers.prayer;
   } else {
-    timeRemaining = subtractTime(
-      upcomingPrayer.time,
-      `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
-      nextDay,
-    );
+    timeRemaining = subtractTime(upcomingPrayer.time, fullCurrentTime, nextDay);
     timeRemaining.prayer = upcomingPrayer.prayer;
   }
 

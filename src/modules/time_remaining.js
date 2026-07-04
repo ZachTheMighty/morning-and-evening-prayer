@@ -1,6 +1,7 @@
 import displayPrayers from "./display_prayers.js";
 import getFivePrayers from "./fetch_prayers.js";
 import countdown from "./countdown.js";
+import subtractTime from "./subtract_time.js";
 
 export default async function timeRemaining() {
   const currentTime = `${new Date().getHours().toString().padStart(2, "0")}:${new Date().getMinutes().toString().padStart(2, "0")}`;
@@ -59,24 +60,4 @@ export default async function timeRemaining() {
     timeRemaining.seconds,
     timeRemaining.prayer,
   );
-}
-
-function subtractTime(timeA, timeB) {
-  const a = timeA.split(":");
-  const b = timeB.split(":");
-
-  let hours = a[0] - b[0];
-  let minutes = a[1] - b[1] - 1;
-  let seconds = Math.abs(b[2] - 60);
-
-  if (minutes < 0) {
-    hours--;
-    minutes = 60 - Math.abs(minutes);
-  }
-
-  if (hours < 0) {
-    hours = 24 - Math.abs(hours);
-  }
-
-  return { hours, minutes, seconds };
 }

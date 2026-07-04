@@ -48,12 +48,11 @@ export default async function timeRemaining() {
     );
     timeRemaining.prayer = fivePrayers.prayer;
   } else {
-    if (upcomingPrayer.time > currentTime)
-      timeRemaining = subtractTime(
-        upcomingPrayer.time,
-        `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
-        nextDay,
-      );
+    timeRemaining = subtractTime(
+      upcomingPrayer.time,
+      `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
+      nextDay,
+    );
     timeRemaining.prayer = upcomingPrayer.prayer;
   }
 

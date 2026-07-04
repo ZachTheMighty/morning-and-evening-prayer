@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 
 export default {
   entry: {
-    index: "./src/index.js",
+    main: "./src/index.js",
     script: "./src/modules/morning_evening/script.js",
   },
 
@@ -17,7 +17,7 @@ export default {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "index.html",
-      chunks: ["index"],
+      chunks: ["main"],
     }),
     new HtmlWebpackPlugin({
       template: "./src/modules/morning_evening/morning.html",

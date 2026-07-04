@@ -37,15 +37,15 @@ export default async function timeRemaining() {
 
   const fullCurrentTime = `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`;
   if (nextDay) {
-    fivePrayers = {
+    nextDaysFajr = {
       prayer: "Fajr",
       time: Object.values(
         await getFivePrayers(currentDate.join("-")),
       )[0].toString(),
     };
 
-    timeRemaining = subtractTime(fivePrayers.time, fullCurrentTime, nextDay);
-    timeRemaining.prayer = fivePrayers.prayer;
+    timeRemaining = subtractTime(nextDaysFajr.time, fullCurrentTime, nextDay);
+    timeRemaining.prayer = nextDaysFajr.prayer;
   } else {
     timeRemaining = subtractTime(upcomingPrayer.time, fullCurrentTime, nextDay);
     timeRemaining.prayer = upcomingPrayer.prayer;

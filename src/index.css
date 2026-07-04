@@ -43,7 +43,7 @@ a:hover {
 }
 
 .time-remaining {
-  font-size: 5vw;
+  font-size: 7vw;
 }
 
 .prayer-name {
@@ -60,7 +60,7 @@ a:hover {
   display: flex;
   flex-flow: column nowrap;
   gap: 8px;
-  font-size: 2vw;
+  font-size: 3vw;
 }
 
 .prayers > div {

@@ -1,4 +1,5 @@
 import delay from "./delay.js";
+import updateDOM from "./update_dom.js";
 
 export default async function (hours, minutes, seconds, prayer) {
   while (true) {
@@ -13,13 +14,7 @@ export default async function (hours, minutes, seconds, prayer) {
       hours--;
       minutes = 59;
     }
-
-    const timeRemainingDiv = document.querySelector(".time-remaining");
-    timeRemainingDiv.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-
-    const prayerNameDiv = document.querySelector(".prayer-name");
-    prayerNameDiv.textContent = `Remains until ${prayer} azan`;
-
+    updateDOM(hours, minutes, seconds, prayer);
     await delay(1);
   }
 }

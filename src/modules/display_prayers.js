@@ -1,3 +1,5 @@
+import convertTime from "../../../weather-app-assigment/src/modules/convert_time.js";
+
 export default function (prayers, upcomingPrayer) {
   const prayersDiv = document.createElement("div");
   prayersDiv.classList.add("prayers");
@@ -12,7 +14,7 @@ export default function (prayers, upcomingPrayer) {
 
     const prayerTime = document.createElement("div");
     prayerTime.classList.add("time");
-    prayerTime.textContent = prayer[1];
+    prayerTime.textContent = convertTime(prayer[1], false, true);
 
     if (prayer[0] === upcomingPrayer.prayer) {
       prayerName.classList.add("upcoming-prayer");

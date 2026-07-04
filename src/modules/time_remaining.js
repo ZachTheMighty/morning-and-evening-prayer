@@ -37,7 +37,7 @@ export default async function timeRemaining() {
 
   const fullCurrentTime = `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`;
   if (dayOver) {
-    nextDaysFajr = {
+    const nextDaysFajr = {
       prayer: "Fajr",
       time: Object.values(
         await getFivePrayers(currentDate.join("-")),

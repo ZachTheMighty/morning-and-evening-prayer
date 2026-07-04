@@ -1,27 +1,5 @@
 import displayPrayers from "./display_prayers.js";
-
-async function getFivePrayers(date) {
-  if (localStorage.getItem(date)) return JSON.parse(localStorage.getItem(date));
-
-  let result;
-  await fetch(
-    `https://api.aladhan.com/v1/timingsByCity/${date}?country=jordan&city=amman`,
-  )
-    .then((response) => response.json())
-    .then((data) => (result = data.data.timings));
-  const { Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha } = result;
-  localStorage.setItem(
-    date,
-    JSON.stringify({
-      Fajr,
-      Dhuhr,
-      Asr,
-      Maghrib,
-      Isha,
-    }),
-  );
-  return { Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha };
-}
+import getFivePrayers from "./fetch_prayers.js";
 
 export default async function timeRemaining() {
   const currentTime = `${new Date().getHours().toString().padStart(2, "0")}:${new Date().getMinutes().toString().padStart(2, "0")}`;

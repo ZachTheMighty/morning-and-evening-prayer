@@ -1,0 +1,71 @@
+import displayPrayers from "./display_prayers.js";
+import getFivePrayers from "./fetch_prayers.js";
+import countdown from "./countdown.js";
+
+export default async function timeRemaining() {
+  const currentTime = `${new Date().getHours().toString().padStart(2, "0")}:${new Date().getMinutes().toString().padStart(2, "0")}`;
+
+  let currentDate = new Date()
+    .toLocaleString()
+    .replaceAll("/", "-")
+    .split(",")[0]
+    .split("-");
+  let temp = currentDate[0];
+  currentDate[0] = currentDate[1];
+  currentDate[1] = temp;
+
+  let upcomingPrayer;
+
+  let fivePrayers = Object.entries(await getFivePrayers(currentDate.join("-")));
+
+  for (const prayer of fivePrayers) {
+    if (prayer[1] > currentTime) {
+      upcomingPrayer = {
+        prayer: prayer[0],
+        time: prayer[1],
+      };
+      break;
+    }
+  }
+  displayPrayers(fivePrayers, upcomingPrayer);
+
+  if (fivePrayers.length === 0) {
+    fivePrayers = {
+      prayer: "Fajr",
+      time: Object.values(await getFivePrayers(currentDate.join("-")))[0],
+    };
+
+    subtractTime(
+      fivePrayers.time.toString(),
+      `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
+      fivePrayers.prayer,
+    );
+  } else {
+    if (upcomingPrayer.time > currentTime)
+      subtractTime(
+        upcomingPrayer.time,
+        `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
+        upcomingPrayer.prayer,
+      );
+  }
+}
+
+function subtractTime(timeA, timeB, prayer) {
+  const a = timeA.split(":");
+  const b = timeB.split(":");
+
+  let hours = a[0] - b[0];
+  let minutes = a[1] - b[1] - 1;
+  let seconds = Math.abs(b[2] - 60);
+
+  if (minutes < 0) {
+    hours--;
+    minutes = 60 - Math.abs(minutes);
+  }
+
+  if (hours < 0) {
+    hours = 24 - Math.abs(hours);
+  }
+
+  countdown(hours, minutes, seconds, prayer);
+}

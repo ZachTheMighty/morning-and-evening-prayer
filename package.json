@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
-    "deploy": "npm run build && git branch gh-pages && git checkout gh-pages && git merge main --no-edit && git add dist -f && git commit -m 'Deployment commit' && git subtree push --prefix dist origin gh-pages && git checkout main",
-    "redeploy": "npm run build && git checkout gh-pages && git merge main --no-edit && git add dist -f && git commit -m 'Deployment commit' && git subtree push --prefix dist origin gh-pages && git checkout main",
+    "deploy": "git branch gh-pages && git checkout gh-pages && npm run build && git merge main --no-edit && git add dist -f && git commit -m 'Deployment commit' && git subtree push --prefix dist origin gh-pages && git checkout main",
+    "redeploy": "git checkout gh-pages && npm run build && git merge main --no-edit && git add dist -f && git commit -m 'Deployment commit' && git subtree push --prefix dist origin gh-pages && git checkout main",
     "install": "./install_dep.sh",
     "lint": "eslint"
   },

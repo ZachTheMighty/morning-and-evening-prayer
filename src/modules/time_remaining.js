@@ -29,28 +29,39 @@ export default async function timeRemaining() {
   }
   displayPrayers(fivePrayers, upcomingPrayer);
 
+  let timeRemaining;
+
   if (fivePrayers.length === 0) {
     fivePrayers = {
       prayer: "Fajr",
       time: Object.values(await getFivePrayers(currentDate.join("-")))[0],
     };
 
-    subtractTime(
+    timeRemaining = subtractTime(
       fivePrayers.time.toString(),
       `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
       fivePrayers.prayer,
     );
+    timeRemaining.prayer = fivePrayers.prayer;
   } else {
     if (upcomingPrayer.time > currentTime)
-      subtractTime(
+      timeRemaining = subtractTime(
         upcomingPrayer.time,
         `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
         upcomingPrayer.prayer,
       );
+    timeRemaining.prayer = fivePrayers.prayer;
   }
+
+  countdown(
+    timeRemaining.hours,
+    timeRemaining.minutes,
+    timeRemaining.seconds,
+    timeRemaining.prayer,
+  );
 }
 
-function subtractTime(timeA, timeB, prayer) {
+function subtractTime(timeA, timeB) {
   const a = timeA.split(":");
   const b = timeB.split(":");
 
@@ -67,5 +78,5 @@ function subtractTime(timeA, timeB, prayer) {
     hours = 24 - Math.abs(hours);
   }
 
-  countdown(hours, minutes, seconds, prayer);
+  return { hours, minutes, seconds };
 }

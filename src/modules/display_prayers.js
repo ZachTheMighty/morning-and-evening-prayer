@@ -1,6 +1,6 @@
 import convertTime from "../../../weather-app-assigment/src/modules/convert_time.js";
 
-export default function (prayers, upcomingPrayer) {
+export default function (prayers, upcomingPrayer, nextDay) {
   const prayersDiv = document.createElement("div");
   prayersDiv.classList.add("prayers");
 
@@ -16,12 +16,19 @@ export default function (prayers, upcomingPrayer) {
     prayerTime.classList.add("time");
     prayerTime.textContent = convertTime(prayer[1], false, true);
 
-    if (prayer[0] === upcomingPrayer.prayer) {
-      prayerName.classList.add("upcoming-prayer");
-      prayerTime.classList.add("upcoming-prayer");
+    if (!nextDay) {
+      if (prayer[0] === upcomingPrayer.prayer) {
+        prayerName.classList.add("upcoming-prayer");
+        prayerTime.classList.add("upcoming-prayer");
+      } else {
+        prayerName.classList.remove("upcoming-prayer");
+        prayerTime.classList.remove("upcoming-prayer");
+      }
     } else {
-      prayerName.classList.remove("upcoming-prayer");
-      prayerTime.classList.remove("upcoming-prayer");
+      if (prayer[0] === "Fajr") {
+        prayerName.classList.add("upcoming-prayer");
+        prayerTime.classList.add("upcoming-prayer");
+      }
     }
 
     prayerDiv.append(prayerName, prayerTime);

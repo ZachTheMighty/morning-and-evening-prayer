@@ -19,6 +19,7 @@ export default async function timeRemaining() {
 
   let fivePrayers = Object.entries(await getFivePrayers(currentDate.join("-")));
 
+  let nextDay = false;
   for (const prayer of fivePrayers) {
     if (prayer[1] > currentTime) {
       upcomingPrayer = {
@@ -28,11 +29,13 @@ export default async function timeRemaining() {
       break;
     }
   }
-  displayPrayers(fivePrayers, upcomingPrayer);
+  if (!upcomingPrayer) nextDay = true;
+
+  displayPrayers(fivePrayers, upcomingPrayer, nextDay);
 
   let timeRemaining;
 
-  if (fivePrayers.length === 0) {
+  if (nextDay) {
     fivePrayers = {
       prayer: "Fajr",
       time: Object.values(await getFivePrayers(currentDate.join("-")))[0],
@@ -41,15 +44,15 @@ export default async function timeRemaining() {
     timeRemaining = subtractTime(
       fivePrayers.time.toString(),
       `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
-      fivePrayers.prayer,
+      nextDay,
     );
-    timeRemaining.prayer = upcomingPrayer.prayer;
+    timeRemaining.prayer = fivePrayers.prayer;
   } else {
     if (upcomingPrayer.time > currentTime)
       timeRemaining = subtractTime(
         upcomingPrayer.time,
         `${new Date().getHours()}:${new Date().getMinutes()}: ${new Date().getSeconds()}`,
-        upcomingPrayer.prayer,
+        nextDay,
       );
     timeRemaining.prayer = upcomingPrayer.prayer;
   }

@@ -1,5 +1,6 @@
 import displayPrayers from "./display_prayers.js";
 import getFivePrayers from "./fetch_prayers.js";
+import delay from "./delay.js";
 
 export default async function timeRemaining() {
   const currentTime = `${new Date().getHours().toString().padStart(2, "0")}:${new Date().getMinutes().toString().padStart(2, "0")}`;
@@ -84,10 +85,6 @@ async function subtractTime(timeA, timeB, prayer) {
 
     const prayerNameDiv = document.querySelector(".prayer-name");
     prayerNameDiv.textContent = `Remains until ${prayer} azan`;
-    await delay();
+    await delay(1);
   }
-}
-
-function delay() {
-  return new Promise((resolve) => setTimeout(resolve, 1000));
 }

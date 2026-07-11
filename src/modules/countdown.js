@@ -1,5 +1,6 @@
 import delay from "./delay.js";
 import updateDOM from "./update_dom.js";
+import timeRemaining from "./time_remaining.js";
 
 export default async function (hours, minutes, seconds, prayer) {
   while (true) {

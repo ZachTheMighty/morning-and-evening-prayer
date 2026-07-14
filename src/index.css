@@ -1,3 +1,7 @@
+body {
+  font-size: 2rem;
+}
+
 div {
   background-color: green;
   width: 60vw;
@@ -15,7 +19,6 @@ a:visited {
   text-decoration: none;
   color: white;
   font-weight: 600;
-  font-size: 5vw;
   opacity: 1;
   transition: opacity 0.5s;
 }
@@ -34,6 +37,7 @@ a:hover {
   align-items: center;
   gap: 12px;
   padding: 24px;
+  font-size: 2rem;
 }
 
 .next-prayer > div {
@@ -42,12 +46,7 @@ a:hover {
   padding: 0;
 }
 
-.time-remaining {
-  font-size: 7vw;
-}
-
 .prayer-name {
-  font-size: 4vw;
   color: #f5deb3;
   font-weight: 400;
 }
@@ -60,7 +59,7 @@ a:hover {
   display: flex;
   flex-flow: column nowrap;
   gap: 8px;
-  font-size: 3vw;
+  font-size: 1.3rem;
 }
 
 .prayers > div {
@@ -77,4 +76,18 @@ a:hover {
 
 .upcoming-prayer {
   color: red;
+}
+
+@media (max-width: 700px) {
+  div {
+    width: 80vw;
+  }
+  .next-prayer,
+  div:has(a) {
+    font-size: 1.2rem;
+  }
+
+  .prayers {
+    font-size: 0.9rem;
+  }
 }

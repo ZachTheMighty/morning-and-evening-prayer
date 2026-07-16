@@ -1,6 +1,8 @@
 import convertTime from "../../../weather-app-assigment/src/modules/convert_time.js";
 
 export default function (prayers, upcomingPrayer, nextDay) {
+  if (document.querySelector(".prayers")) return;
+
   const prayersDiv = document.createElement("div");
   prayersDiv.classList.add("prayers");
 

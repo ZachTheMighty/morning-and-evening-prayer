@@ -14,7 +14,11 @@ export default async function (hours, minutes, seconds, prayer) {
       if (minutes < 0) minutes = 59;
     }
 
-    if (minutes === 0 && hours > 0) hours--;
+    if (minutes === 0 && seconds === 0 && hours > 0) {
+      hours--;
+      seconds = 59;
+      minutes = 59;
+    }
 
     updateDOM(hours, minutes, seconds, prayer);
     await delay(1);

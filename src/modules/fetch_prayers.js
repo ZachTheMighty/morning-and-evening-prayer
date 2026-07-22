@@ -12,6 +12,7 @@ export default async function (date) {
     date,
     JSON.stringify({
       Fajr,
+      Sunrise,
       Dhuhr,
       Asr,
       Maghrib,

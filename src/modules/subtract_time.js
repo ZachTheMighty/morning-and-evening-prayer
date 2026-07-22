@@ -1,4 +1,4 @@
-export default function (timeA, timeB, nextDay) {
+export default function (timeA, timeB) {
   const a = timeA.split(":");
   const b = timeB.split(":");
 
@@ -14,8 +14,6 @@ export default function (timeA, timeB, nextDay) {
   if (hours < 0) {
     hours = 24 - Math.abs(hours);
   }
-
-  if (nextDay) hours = 12 - hours;
 
   return { hours, minutes, seconds };
 }

@@ -44,10 +44,10 @@ export default async function timeRemaining() {
       )[0].toString(),
     };
 
-    timeRemaining = subtractTime(nextDaysFajr.time, fullCurrentTime, dayOver);
+    timeRemaining = subtractTime(nextDaysFajr.time, fullCurrentTime);
     timeRemaining.prayer = nextDaysFajr.prayer;
   } else {
-    timeRemaining = subtractTime(upcomingPrayer.time, fullCurrentTime, dayOver);
+    timeRemaining = subtractTime(upcomingPrayer.time, fullCurrentTime);
     timeRemaining.prayer = upcomingPrayer.prayer;
   }
 

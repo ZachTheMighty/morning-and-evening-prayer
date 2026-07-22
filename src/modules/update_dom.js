@@ -3,5 +3,5 @@ export default function (hours, minutes, seconds, prayer) {
   timeRemainingDiv.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 
   const prayerNameDiv = document.querySelector(".prayer-name");
-  prayerNameDiv.textContent = `Remain until ${prayer} azan`;
+  prayerNameDiv.textContent = `Remain until ${prayer === "Sunrise" ? prayer : prayer + " azan"}`;
 }
